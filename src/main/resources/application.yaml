@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: com.example.solicitudes
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/solicitudes_db
+    username: solicitudes_user
+    password: solicitudes_pass
+    pool:
+      initial-size: 5
+      max-size: 20
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
+
+server:
+  port: 8080
+
+app:
+  security:
+    jwt:
+      secret: ${JWT_SECRET}
+      expiration: 3600000
+
+logging:
+  level:
+    org.springframework.r2dbc: INFO
+    com.example.solicitudes: DEBUG
